@@ -25,6 +25,9 @@ public class AddServlet extends HttpServlet {
 		String email = req.getParameter("gmail");
 		PrintWriter out = res.getWriter();
 		String referrer = req.getHeader("referer");
+		if(Error.getErrorList().size() > 0) {
+			Error.clearList();
+		}
 		if (req.getParameterMap().containsKey("contactNo")) {
 			try {
 				contactNo = Long.parseLong(req.getParameter("contactNo"));
