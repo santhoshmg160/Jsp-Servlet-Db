@@ -40,7 +40,7 @@ public class AddServlet extends HttpServlet {
 		else if(referrer.contains("inbox.jsp")) {
 			try {
 				contactNo = Long.parseLong(req.getParameter("mobile"));
-				Error.checkEmail(email);
+				Error.checkEmail(email, contactNo, "create");
 				Error.checkNo(contactNo);
 				if(Error.getErrorList().size() == 0) {
 					Database.createContact(name, contactNo, email);
@@ -52,7 +52,7 @@ public class AddServlet extends HttpServlet {
 		} else if (referrer.contains("Edit.jsp")){
 			try {
 				contactNo = Long.parseLong(req.getParameter("mobiles"));
-				Error.checkEmail(email);
+				Error.checkEmail(email, contactNo, "post");
 				if(Error.getErrorList().size() == 0) {
 					Database.updateContact(name, contactNo, email);
 				}
