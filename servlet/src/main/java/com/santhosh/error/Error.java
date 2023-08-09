@@ -19,10 +19,16 @@ public class Error {
 		}
 	}
 	
-	public static void checkEmail(String email) {
+	public static void checkEmail(String email, long contactNo, String method) {
 		for (ContactModel x : cm)  {
-			if(x.getEmail().equals(email)) {
-				errorMsg.add("EmailId Already Exists");
+			if(method.equals("create")) {
+				if(x.getEmail().equals(email)) {
+					errorMsg.add("EmailId Already Exists");
+				}
+			} else {
+				if(x.getEmail().equals(email) && x.getContactNo != contactNo) {
+					errorMsg.add("EmailId Already Exists");
+				}
 			}
 		}
 	}
